@@ -16,10 +16,10 @@ const initialData: IData = {
 	full_name: '',
 }
 
-export default function RegisterForm(): React.FC {
+export default function RegisterForm() {
 	const [data, setData] = useState<IData>(initialData)
 
-	function handleChange(e: React.FormEvent<HTMLInputElement>) {
+	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setData(prev => ({ ...prev, [e.target.name]: e.target.value }))
 	}
 
@@ -39,7 +39,7 @@ export default function RegisterForm(): React.FC {
 			<h2>Регистрация</h2>
 			<div>
 				<input
-					value={username}
+					value={data.username}
 					name='username'
 					type='text'
 					placeholder='Имя пользователя'
@@ -47,7 +47,7 @@ export default function RegisterForm(): React.FC {
 					required
 				/>
 				<input
-					value={email}
+					value={data.email}
 					name='email'
 					type='email'
 					placeholder='Почта'
@@ -55,7 +55,7 @@ export default function RegisterForm(): React.FC {
 					required
 				/>
 				<input
-					value={fullName}
+					value={data.full_name}
 					name='full_name'
 					type='text'
 					placeholder='ФИО'
@@ -63,7 +63,7 @@ export default function RegisterForm(): React.FC {
 					required
 				/>
 				<input
-					value={password}
+					value={data.password}
 					name='password'
 					onChange={handleChange}
 					type='password'

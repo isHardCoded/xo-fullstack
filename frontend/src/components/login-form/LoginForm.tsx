@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import React from 'react'
 import { USER_SERVICE } from '../../services/User.service'
+import styles from './LoginForm.module.scss'
 
 interface IData {
 	username: string
@@ -19,7 +20,7 @@ const initialData: IData = {
 export default function LoginForm() {
 	const [data, setData] = useState<IData>(initialData)
 
-	function handleChange(e: React.FormEvent<HTMLInputElement>) {
+	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setData(prev => ({ ...prev, [e.target.name]: e.target.value }))
 	}
 
@@ -35,11 +36,11 @@ export default function LoginForm() {
 	}
 
 	return (
-		<form onSubmit={handleSumbit} className={styles.form}>
+		<form onSubmit={handleSubmit} className={styles.form}>
 			<h2>Вход</h2>
 			<div>
 				<input
-					value={username}
+					value={data.username}
 					name='username'
 					type='text'
 					placeholder='Имя пользователя'
@@ -47,7 +48,7 @@ export default function LoginForm() {
 					required
 				/>
 				<input
-					value={password}
+					value={data.password}
 					name='password'
 					onChange={handleChange}
 					type='password'
