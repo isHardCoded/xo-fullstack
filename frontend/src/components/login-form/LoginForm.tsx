@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import styles from './RegisterForm.module.scss'
+import { useState } from 'react'
+import React from 'react'
 import { USER_SERVICE } from '../../services/User.service'
 
 interface IData {
@@ -16,18 +16,18 @@ const initialData: IData = {
 	full_name: '',
 }
 
-export default function RegisterForm(): React.FC {
+export default function LoginForm() {
 	const [data, setData] = useState<IData>(initialData)
 
 	function handleChange(e: React.FormEvent<HTMLInputElement>) {
 		setData(prev => ({ ...prev, [e.target.name]: e.target.value }))
 	}
 
-	async function handleSumbit(e: React.FormEvent<HTMLFormElement>) {
+	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
 
 		try {
-			const response = await USER_SERVICE.register(data)
+			const response = await USER_SERVICE.login(data)
 			console.log(await response.json())
 		} catch (error) {
 			console.log(`Ошибка: ${error}`)
@@ -36,29 +36,13 @@ export default function RegisterForm(): React.FC {
 
 	return (
 		<form onSubmit={handleSumbit} className={styles.form}>
-			<h2>Регистрация</h2>
+			<h2>Вход</h2>
 			<div>
 				<input
 					value={username}
 					name='username'
 					type='text'
 					placeholder='Имя пользователя'
-					onChange={handleChange}
-					required
-				/>
-				<input
-					value={email}
-					name='email'
-					type='email'
-					placeholder='Почта'
-					onChange={handleChange}
-					required
-				/>
-				<input
-					value={fullName}
-					name='full_name'
-					type='text'
-					placeholder='ФИО'
 					onChange={handleChange}
 					required
 				/>
@@ -70,7 +54,7 @@ export default function RegisterForm(): React.FC {
 					placeholder='Пароль'
 					required
 				/>
-				<button type='submit'>Зарегистрироваться</button>
+				<button type='submit'>Войти</button>
 			</div>
 		</form>
 	)

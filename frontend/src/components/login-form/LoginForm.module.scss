@@ -1,0 +1,50 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	max-width: 250px;
+	margin: 20px;
+	padding: 10px;
+
+	margin: 0 auto;
+	margin-top: 100px;
+	box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+
+	border-radius: 5px;
+
+	h2 {
+		font-size: 20px;
+		text-align: center;
+	}
+
+	div {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		margin-top: 20px;
+
+		input {
+			outline: 0;
+			border: 1px solid gainsboro;
+			font-size: 14px;
+			border-radius: 5px;
+			padding: 5px;
+			padding-left: 10px;
+			color: gray;
+
+			&:focus {
+				border: 1px solid gray;
+			}
+		}
+	}
+
+	button {
+		outline: 0;
+		border: 0;
+		border-radius: 5px;
+		margin-top: 20px;
+		background-color: #60c2aa;
+		color: white;
+		padding: 5px;
+		cursor: pointer;
+	}
+}
