@@ -6,3 +6,10 @@ cd frontend
 yarn add
 yarn dev
 ```
+
+or
+
+```
+npm i
+npm run dev
+```
