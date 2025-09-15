@@ -1,7 +1,9 @@
+import LoginForm from '../../components/login-form/LoginForm'
+
 export default function LoginPage() {
 	return (
 		<>
-			<h1>Страница авторизации</h1>
+			<LoginForm />
 		</>
 	)
 }
