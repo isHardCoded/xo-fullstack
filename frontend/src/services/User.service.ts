@@ -34,4 +34,19 @@ export const USER_SERVICE = {
 
 		return await response.json()
 	},
+
+	getAllUsers: async (token: string | null) => {
+		const response = await fetch(`${API_URL}/users/all/`, {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		})
+
+		if (!response.ok) {
+			throw new Error('Ошибка при получении всех пользователей')
+		}
+
+		return await response.json()
+	},
 }
