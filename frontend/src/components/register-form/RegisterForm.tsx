@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './RegisterForm.module.scss'
 import { USER_SERVICE } from '../../services/User.service'
+import { useNavigate } from 'react-router-dom'
 
 interface IData {
 	username: string
@@ -18,6 +19,7 @@ const initialData: IData = {
 
 export default function RegisterForm() {
 	const [data, setData] = useState<IData>(initialData)
+	const navigate = useNavigate()
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setData(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -27,8 +29,8 @@ export default function RegisterForm() {
 		e.preventDefault()
 
 		try {
-			const response = await USER_SERVICE.register(data)
-			console.log(await response.json())
+			await USER_SERVICE.register(data)
+			navigate('/login')
 		} catch (error) {
 			console.log(`Ошибка: ${error}`)
 		}

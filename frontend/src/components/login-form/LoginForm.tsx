@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import React from 'react'
-import { USER_SERVICE } from '../../services/User.service'
 import styles from './LoginForm.module.scss'
+import { useAuth } from '../../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 interface IData {
 	username: string
@@ -19,6 +20,8 @@ const initialData: IData = {
 
 export default function LoginForm() {
 	const [data, setData] = useState<IData>(initialData)
+	const { login } = useAuth()
+	const navigate = useNavigate()
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setData(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -26,13 +29,8 @@ export default function LoginForm() {
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
-
-		try {
-			const response = await USER_SERVICE.login(data)
-			console.log(await response.json())
-		} catch (error) {
-			console.log(`Ошибка: ${error}`)
-		}
+		await login(data)
+		navigate('/dashboard')
 	}
 
 	return (
