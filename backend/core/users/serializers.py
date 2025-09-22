@@ -28,3 +28,17 @@ class LoginSerializer(serializers.Serializer):
             return user
 
         raise serializers.ValidationError('Неправильный логин или пароль')
+
+class UserListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'id',
+            'username',
+            'full_name',
+            'birth_date',
+            'gender',
+            'status',
+            'email',
+            'account_status'
+        ]
