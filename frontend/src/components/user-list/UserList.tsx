@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useUser } from '../../hooks/useUser'
 import { useAuth } from '../../context/AuthContext'
 import UserListItem from '../user-list-item/UserListItem'
+import styles from './UserList.module.scss'
 
 export default function UserList() {
 	const { token } = useAuth()
@@ -12,7 +13,7 @@ export default function UserList() {
 	}, [])
 
 	return (
-		<ul>
+		<ul className={styles.list}>
 			{users.map(user => (
 				<UserListItem user={user} />
 			))}
