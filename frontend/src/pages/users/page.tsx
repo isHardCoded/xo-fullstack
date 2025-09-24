@@ -1,4 +1,4 @@
-import UserList from '../../components/user-list/UserList'
+import UserList from '../../components/containers/UserList/UserList'
 import Layout from '../../layouts/Layout'
 import styles from './index.module.scss'
 

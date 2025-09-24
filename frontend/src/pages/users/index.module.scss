@@ -8,11 +8,13 @@
 	max-width: 1440px;
 	margin: 0 auto;
 	margin-top: 80px;
+	border-radius: 40px;
 
 	.listHeader {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		margin-bottom: 20px;
 
 		button {
 			outline: 0;

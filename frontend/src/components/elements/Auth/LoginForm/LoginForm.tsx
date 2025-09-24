@@ -29,8 +29,12 @@ export default function LoginForm() {
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
-		await login(data)
-		navigate('/dashboard')
+		try {
+			await login(data)
+			navigate('/dashboard')
+		} catch (e) {
+			console.log(`Error: ${e}`)
+		}
 	}
 
 	return (

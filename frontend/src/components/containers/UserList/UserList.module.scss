@@ -1,6 +1,30 @@
-.list {
-	display: flex;
-	flex-direction: column;
+.table {
+	.columns {
+		text-align: left;
 
-	list-style: none;
+		tr {
+			th {
+				color: #373745;
+				font-size: 16px;
+			}
+		}
+	}
+
+	.body {
+		tr {
+			th,
+			td {
+				text-align: left;
+			}
+
+			td {
+				padding: 20px 0px;
+				border-bottom: 1px solid gainsboro;
+
+				&:first-child {
+					padding-right: 40px;
+				}
+			}
+		}
+	}
 }

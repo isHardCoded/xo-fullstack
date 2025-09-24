@@ -1,22 +1,53 @@
 import type { User } from '../../../shared/types/User'
 import styles from './UserListItem.module.scss'
 
+import { calculateAge } from '../../../shared/utils/calculateAge'
+import { formatDate } from '../../../shared/utils/formatDate'
+
+import { StatusBadge } from '../../ui/StatusBadge'
+
 interface UserListItemProps {
 	user: User
 }
 
+function genderEmoji(gender?: string) {
+	if (!gender) return '♂️'
+	if (gender.toLowerCase() === 'женский') return '👩🏻'
+	if (gender.toLowerCase() === 'мужской') return '👨🏻'
+	return gender
+}
+
 export default function UserListItem({ user }: UserListItemProps) {
+	const isBlocked = user.account_status.toLowerCase() === 'заблокирован'
+
 	return (
-		<li className={styles.item}>
-			<div className={styles.itemBlock}>
-				<p>{user.full_name}</p>
-				<p>{user.birth_date ? user.birth_date : 10}</p>
-				<p>{user.gender ? user.gender : 'Мужской'}</p>
-				<p>{user.account_status}</p>
-				<p>{user.created_at}</p>
-				<p>{user.updated_at}</p>
-				<button>Разблокировать</button>
-			</div>
-		</li>
+		<tr className={styles.row}>
+			<td>{user.full_name}</td>
+			<td>{calculateAge(user.birth_date)}</td>
+			<td>{genderEmoji(user.gender)}</td>
+			<td>
+				<StatusBadge status={user.account_status} styles={styles} />
+			</td>
+			<td>{formatDate(user.created_at)}</td>
+			<td>{formatDate(user.updated_at)}</td>
+			<td>
+				<button className={styles.button}>
+					<svg
+						width='21'
+						height='20'
+						viewBox='0 0 21 20'
+						fill='none'
+						xmlns='http://www.w3.org/2000/svg'
+					>
+						<path
+							d='M10.5 0C4.98 0 0.5 4.48 0.5 10C0.5 15.52 4.98 20 10.5 20C16.02 20 20.5 15.52 20.5 10C20.5 4.48 16.02 0 10.5 0ZM2.5 10C2.5 5.58 6.08 2 10.5 2C12.35 2 14.05 2.63 15.4 3.69L4.19 14.9C3.13 13.55 2.5 11.85 2.5 10ZM10.5 18C8.65 18 6.95 17.37 5.6 16.31L16.81 5.1C17.87 6.45 18.5 8.15 18.5 10C18.5 14.42 14.92 18 10.5 18Z'
+							fill='#373745'
+						/>
+					</svg>
+
+					{isBlocked ? 'Разблокировать' : 'Заблокировать'}
+				</button>
+			</td>
+		</tr>
 	)
 }

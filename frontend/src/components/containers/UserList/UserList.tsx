@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { useUser } from '../../hooks/useUser'
-import { useAuth } from '../../context/AuthContext'
-import UserListItem from '../user-list-item/UserListItem'
+import { useUser } from '../../../hooks/useUser'
+import { useAuth } from '../../../context/AuthContext'
+import UserListItem from '../../elements/UserListItem/UserListItem'
 import styles from './UserList.module.scss'
 
 export default function UserList() {
@@ -9,14 +9,29 @@ export default function UserList() {
 	const { users, getAllUsers } = useUser()
 
 	useEffect(() => {
-		getAllUsers(token)
-	}, [])
+		if (token) {
+			getAllUsers(token).catch(console.error)
+		}
+	}, [token, getAllUsers])
 
 	return (
-		<ul className={styles.list}>
-			{users.map(user => (
-				<UserListItem user={user} />
-			))}
-		</ul>
+		<table className={styles.table}>
+			<thead className={styles.columns}>
+				<tr>
+					<th>ФИО</th>
+					<th>Возраст</th>
+					<th>Пол</th>
+					<th>Статус</th>
+					<th>Создан</th>
+					<th>Изменен</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody className={styles.body}>
+				{users.map(user => (
+					<UserListItem key={user.id} user={user} />
+				))}
+			</tbody>
+		</table>
 	)
 }

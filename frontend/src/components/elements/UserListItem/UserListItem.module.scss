@@ -1,20 +1,41 @@
-.item {
-	padding: 12px 0px;
+.blocked {
+	background-color: #ec7777;
+	color: #ffffff;
+	padding: 4px 12px;
+	border-radius: 6px;
+}
 
-	border-bottom: 1px solid gainsboro;
+.active {
+	background-color: #a8d37f;
+	color: #ffffff;
+	padding: 4px 12px;
+	border-radius: 6px;
+	font-weight: 500;
+}
 
-	.itemBlock {
-		display: flex;
-		justify-content: space-between;
-	}
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
 
-	button {
-		outline: 0;
-		border: 0;
-		cursor: pointer;
-		font-size: 16px;
-		background-color: #f7f7f7;
-		padding: 8px 16px;
-		border-radius: 8px;
+	outline: 0;
+	border: 0;
+
+	color: #373745;
+	background-color: #f7f7f7;
+
+	padding: 8px 16px;
+	border-radius: 8px;
+	font-weight: 500;
+
+	cursor: pointer;
+
+	font-size: 16px;
+
+	transition: 0.2s ease all;
+
+	&:hover {
+		background-color: #e3e3e3;
 	}
 }
