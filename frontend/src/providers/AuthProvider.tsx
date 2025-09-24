@@ -27,7 +27,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			setUser(responseData.user)
 			setToken(responseData.access)
 
-			localStorage.setItem('username', JSON.stringify(responseData.user))
+			localStorage.setItem('user', JSON.stringify(responseData.user))
 			localStorage.setItem('token', responseData.access)
 		} catch (err) {
 			console.log(`Error: ${err}`)

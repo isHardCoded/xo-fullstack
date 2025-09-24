@@ -1,4 +1,4 @@
-import type { User } from '../../shared/types/User'
+import type { User } from '../../../shared/types/User'
 import styles from './UserListItem.module.scss'
 
 interface UserListItemProps {

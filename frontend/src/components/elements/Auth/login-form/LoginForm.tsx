@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import styles from './RegisterForm.module.scss'
-import { USER_SERVICE } from '../../services/User.service'
+import { useState } from 'react'
+import React from 'react'
+import styles from './LoginForm.module.scss'
+import { useAuth } from '../../../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 interface IData {
@@ -17,50 +18,30 @@ const initialData: IData = {
 	full_name: '',
 }
 
-export default function RegisterForm() {
+export default function LoginForm() {
 	const [data, setData] = useState<IData>(initialData)
+	const { login } = useAuth()
 	const navigate = useNavigate()
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setData(prev => ({ ...prev, [e.target.name]: e.target.value }))
 	}
 
-	async function handleSumbit(e: React.FormEvent<HTMLFormElement>) {
+	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
-
-		try {
-			await USER_SERVICE.register(data)
-			navigate('/login')
-		} catch (error) {
-			console.log(`Ошибка: ${error}`)
-		}
+		await login(data)
+		navigate('/dashboard')
 	}
 
 	return (
-		<form onSubmit={handleSumbit} className={styles.form}>
-			<h2>Регистрация</h2>
+		<form onSubmit={handleSubmit} className={styles.form}>
+			<h2>Вход</h2>
 			<div>
 				<input
 					value={data.username}
 					name='username'
 					type='text'
 					placeholder='Имя пользователя'
-					onChange={handleChange}
-					required
-				/>
-				<input
-					value={data.email}
-					name='email'
-					type='email'
-					placeholder='Почта'
-					onChange={handleChange}
-					required
-				/>
-				<input
-					value={data.full_name}
-					name='full_name'
-					type='text'
-					placeholder='ФИО'
 					onChange={handleChange}
 					required
 				/>
@@ -72,7 +53,7 @@ export default function RegisterForm() {
 					placeholder='Пароль'
 					required
 				/>
-				<button type='submit'>Зарегистрироваться</button>
+				<button type='submit'>Войти</button>
 			</div>
 		</form>
 	)
