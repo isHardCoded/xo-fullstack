@@ -12,13 +12,15 @@ interface UserListItemProps {
 
 function genderEmoji(gender?: string) {
 	if (!gender) return '♂️'
-	if (gender.toLowerCase() === 'женский') return '👩🏻'
-	if (gender.toLowerCase() === 'мужской') return '👨🏻'
+	if (gender === 'F') return '👩🏻'
+	if (gender === 'M') return '👨🏻'
 	return gender
 }
 
 export default function UserListItem({ user }: UserListItemProps) {
 	const isBlocked = user.account_status.toLowerCase() === 'заблокирован'
+
+	console.log(user.gender)
 
 	return (
 		<tr className={styles.row}>
@@ -44,7 +46,6 @@ export default function UserListItem({ user }: UserListItemProps) {
 							fill='#373745'
 						/>
 					</svg>
-
 					{isBlocked ? 'Разблокировать' : 'Заблокировать'}
 				</button>
 			</td>
