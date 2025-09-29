@@ -3,6 +3,7 @@ import { INVITATION_SERVICE } from '../services/Invitation.service'
 
 export function useInvitations() {
 	const [invitations, setInvitations] = useState([])
+	const [message, setMessage] = useState({})
 
 	const getInvitations = async (
 		toUserId: number | undefined,
@@ -16,12 +17,15 @@ export function useInvitations() {
 		toUserId: number | undefined,
 		token: string | null
 	) => {
-		await INVITATION_SERVICE.sendInvitation(fromUserId, toUserId, token)
+		setMessage(
+			await INVITATION_SERVICE.sendInvitation(fromUserId, toUserId, token)
+		)
 	}
 
 	return {
 		invitations,
 		getInvitations,
 		sendInvitation,
+		message,
 	}
 }

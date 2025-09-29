@@ -2,28 +2,23 @@ import { useEffect, type ReactNode } from 'react'
 import Header from '../components/elements/Header/Header'
 import { useInvitations } from '../hooks/useInvitations'
 import { useAuth } from '../context/AuthContext'
+import InvitationList from '../components/containers/InvitationList/InvitationList'
 
 interface LayoutProps {
 	children: ReactNode
 }
 
 export default function Layout({ children }: LayoutProps) {
-	const { invitations, getInvitations } = useInvitations()
-	const { user, token } = useAuth()
+	const { message } = useInvitations()
 
-	useEffect(() => {
-		getInvitations(user?.id, token)
-	}, [])
-
-	console.log(invitations)
+	console.log(message)
 
 	return (
 		<>
 			<Header />
+			<InvitationList />
 			<div>
-				{/* {invitations.map(invitation => (
-					<span>{invitation}</span>
-				))} */}
+				<p>Приглашение успешно отправлено: {message.to_user}</p>
 			</div>
 			<main>{children}</main>
 		</>
