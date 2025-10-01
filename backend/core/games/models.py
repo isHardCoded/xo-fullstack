@@ -13,3 +13,12 @@ class Invitation(models.Model):
         ),
         default="pending"
     )
+
+class Game(models.Model):
+    player_x = models.ForeignKey(User, on_delete=models.CASCADE, related_name='player_x')
+    player_o = models.ForeignKey(User, on_delete=models.CASCADE, related_name='player_o')
+    winner = models.ForeignKey(User, on_delete=models.SET_NULL,
+                               null=True, blank=True,
+                               related_name='winner')
+    result = models.JSONField()
+    created_at = models.DateTimeField(auto_now_add=True)
