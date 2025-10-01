@@ -12,6 +12,7 @@ export default function Header() {
 				<Link to={{ pathname: PAGES.ACTIVE }}>Активные игроки</Link>
 				<Link to={{ pathname: PAGES.HISTORY }}>История игр</Link>
 				<Link to={{ pathname: PAGES.USERS }}>Список игроков</Link>
+				<Link to={{ pathname: PAGES.INVITATIONS }}>Приглашения</Link>
 			</nav>
 			<button>
 				<img src='./Logout.svg' alt='' />

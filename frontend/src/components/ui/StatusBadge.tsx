@@ -5,10 +5,10 @@ export function StatusBadge({
 	status: string
 	styles: any
 }) {
-	const isBlocked = status === 'blocked'
+	const isFree = status === 'free'
 	return (
-		<span className={isBlocked ? styles.blocked : styles.active}>
-			{isBlocked ? 'Заблокирован' : 'Активен'}
+		<span className={isFree ? styles.free : styles.in_game}>
+			{isFree ? 'Свободен' : 'В игре'}
 		</span>
 	)
 }

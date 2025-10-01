@@ -4,7 +4,7 @@ import styles from './UserListItem.module.scss'
 import { calculateAge } from '../../../shared/utils/calculateAge'
 import { formatDate } from '../../../shared/utils/formatDate'
 
-import { StatusBadge } from '../../ui/StatusBadge'
+import { AccountStatusBadge } from '../../ui/AccountStatusBadge'
 
 interface UserListItemProps {
 	user: User
@@ -28,7 +28,7 @@ export default function UserListItem({ user }: UserListItemProps) {
 			<td>{calculateAge(user.birth_date)}</td>
 			<td>{genderEmoji(user.gender)}</td>
 			<td>
-				<StatusBadge status={user.account_status} styles={styles} />
+				<AccountStatusBadge status={user.account_status} styles={styles} />
 			</td>
 			<td>{formatDate(user.created_at)}</td>
 			<td>{formatDate(user.updated_at)}</td>

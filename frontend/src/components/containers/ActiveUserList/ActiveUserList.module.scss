@@ -19,24 +19,47 @@
 		li {
 			div {
 				display: flex;
+				align-items: center;
 				justify-content: space-between;
 
 				button {
 					outline: 0;
 					border: 0;
-					background-color: #60c2aa;
-					color: white;
 					padding: 12px 20px;
 					border-radius: 12px;
 					font-weight: bold;
+				}
 
+				.active {
+					background-color: #60c2aa;
+					color: white;
 					cursor: pointer;
 
 					&:hover {
 						background-color: #56ab95;
 					}
 				}
+
+				.disabled {
+					color: gainsboro;
+					background-color: rgba(247, 247, 247, 1);
+				}
 			}
+		}
+
+		.free,
+		.in_game {
+			color: white;
+			padding: 4px 12px;
+			border-radius: 8px;
+		}
+
+		.free {
+			background-color: #a8d37f;
+		}
+
+		.in_game {
+			background-color: #87cae8;
 		}
 	}
 }

@@ -6,6 +6,7 @@ export const PAGES = {
 	ACTIVE: '/active',
 	HISTORY: '/history',
 	USERS: '/users',
+	INVITATIONS: '/invitations',
 }
 
 export const AUTH_PAGES = {

@@ -8,6 +8,7 @@ import UsersPage from './pages/users/page'
 import NotFoundPage from './pages/not-found/page'
 import { AUTH_PAGES, PAGES } from './shared/constants'
 import ActiveUsersPage from './pages/active-users/page'
+import InivitationsPage from './pages/invitations/page'
 
 export default function App() {
 	return (
@@ -18,6 +19,7 @@ export default function App() {
 				<Route path={PAGES.DASHBOARD} element={<DashboardPage />} />
 				<Route path={PAGES.USERS} element={<UsersPage />} />
 				<Route path={PAGES.ACTIVE} element={<ActiveUsersPage />} />
+				<Route path={PAGES.INVITATIONS} element={<InivitationsPage />} />
 
 				<Route path='*' element={<NotFoundPage />} />
 			</Routes>

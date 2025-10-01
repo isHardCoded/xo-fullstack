@@ -42,7 +42,7 @@ export const INVITATION_SERVICE = {
 	respondInvitation: async (
 		invitationId: number,
 		status: 'accepted' | 'declined',
-		token: string
+		token: string | null
 	) => {
 		const response = await fetch(
 			`${API_URL}/games/invitations/${invitationId}/`,

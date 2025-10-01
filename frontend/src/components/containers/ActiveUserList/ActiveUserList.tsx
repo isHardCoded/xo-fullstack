@@ -4,6 +4,7 @@ import { useUser } from '../../../hooks/useUser'
 import { useInvitations } from '../../../hooks/useInvitations'
 
 import styles from './ActiveUserList.module.scss'
+import { StatusBadge } from '../../ui/StatusBadge'
 
 export default function ActiveUserList() {
 	const { user: currentUser, token } = useAuth()
@@ -26,9 +27,13 @@ export default function ActiveUserList() {
 					<li>
 						<div>
 							<p>{user.username}</p>
-							<p>{user.status}</p>
+							<StatusBadge status={user.status} styles={styles} />
 							<button
 								onClick={() => sendInvitation(currentUser?.id, user?.id, token)}
+								className={`${
+									user.status === 'in_game' ? styles.disabled : styles.active
+								}`}
+								disabled={user.status === 'in_game' ? true : false}
 							>
 								Позвать играть
 							</button>
