@@ -15,8 +15,6 @@ export default function DashboardPage() {
 		token
 	)
 
-	console.log(cells)
-
 	return (
 		<>
 			<Layout>

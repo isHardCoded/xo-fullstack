@@ -22,3 +22,11 @@ export interface User {
 	created_at: string
 	updated_at: string
 }
+
+export interface UserRating {
+	full_name: string
+	total_games: number
+	wins: number
+	losses: number
+	win_percentage: number
+}

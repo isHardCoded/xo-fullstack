@@ -49,4 +49,19 @@ export const USER_SERVICE = {
 
 		return await response.json()
 	},
+
+	getUserRating: async (token: string | null) => {
+		const response = await fetch(`${API_URL}/users/rating/`, {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		})
+
+		if (!response.ok) {
+			throw new Error('Ошибка при получении рейтинга')
+		}
+
+		return await response.json()
+	},
 }

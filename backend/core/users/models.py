@@ -11,7 +11,16 @@ class User(AbstractUser):
     updated_at = models.DateTimeField(auto_now=True)
 
 class UserRating(models.Model):
-    pass
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    total_games = models.PositiveIntegerField(default=0)
+    wins = models.PositiveIntegerField(default=0)
+    losses = models.PositiveIntegerField(default=0)
+
+    @property
+    def win_percentage(self):
+        if self.total_games == 0:
+            return 0
+        return self.wins / self.total_games * 100
 
 class UserBlock(models.Model):
     pass

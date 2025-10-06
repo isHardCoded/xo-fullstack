@@ -1,10 +1,11 @@
 from django.urls import path
-from users.views import RegisterView, LoginView, UserListView
+from users.views import RegisterView, LoginView, UserListView, UserRatingListView
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('all/', UserListView.as_view(), name='all'),
+    path('rating/', UserRatingListView.as_view(), name='rating')
 ]
 
 # GET http://127.0.0.1:8000/users/all/

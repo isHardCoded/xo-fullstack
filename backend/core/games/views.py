@@ -1,7 +1,10 @@
 from rest_framework.generics import ListCreateAPIView, UpdateAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
+from django.db.models import F
 
 from games.models import Invitation, Game
+from users.models import UserRating
+
 from games.serializers import InvitationSerializer, GameSerializer
 
 
@@ -26,4 +29,29 @@ class GameCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save()
+        game = serializer.save()
+
+        players = [game.player_x, game.player_o]
+
+        for player in players:
+            rating, created = UserRating.objects.get_or_create(user=player)
+
+            rating.total_games = F('total_games') + 1
+            rating.save()
+
+        if game.winner:
+            winner_rating, created = UserRating.objects.get_or_create(user=game.winner)
+            winner_rating.wins = F('wins') + 1
+            winner_rating.save()
+
+            if players[0] != game.winner:
+                loser = players[0]
+            else:
+                loser = players[1]
+
+            loser_rating, created = UserRating.objects.get_or_create(user=loser)
+            loser_rating.losses = F('losses') + 1
+            loser_rating.save()
+
+
+        

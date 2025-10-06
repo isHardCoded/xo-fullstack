@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
-from users.models import User
+from users.models import User, UserRating
 
 class RegisterSerializer(serializers.Serializer):
     username = serializers.CharField()
@@ -58,3 +58,14 @@ class UserListSerializer(serializers.ModelSerializer):
             'created_at',
             'updated_at'
         ]
+
+class UserRatingSerializer(serializers.ModelSerializer):
+    full_name = serializers.CharField(source='user.full_name')
+    win_percentage = serializers.SerializerMethodField()
+
+    class Meta:
+        model = UserRating
+        fields = ['full_name', 'total_games', 'wins', 'losses', 'win_percentage']
+
+    def get_win_percentage(self, obj):
+        return obj.win_percentage

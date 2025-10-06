@@ -39,3 +39,8 @@ class UserListView(ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserListSerializer
     permission_classes = [IsAuthenticated]
+
+class UserRatingListView(ListAPIView):
+    queryset = UserRating.objects.select_related('user')
+    serializer_class = UserRatingSerializer
+    permission_classes = [IsAuthenticated]
