@@ -1,0 +1,30 @@
+.gameBoard {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 664px;
+	gap: 4px;
+
+	.cell {
+		width: 218px;
+		height: 218px;
+		border-radius: 12px;
+		padding: 10px;
+		background-color: #ffffff;
+		box-shadow: 0px 4px 20px 0px #2c397917;
+
+		img {
+			animation: fadeInScale 0.3s ease forwards;
+		}
+	}
+}
+
+@keyframes fadeInScale {
+	0% {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}

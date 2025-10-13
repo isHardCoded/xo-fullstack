@@ -1,0 +1,48 @@
+.modal {
+	background-color: white;
+	border-radius: 16px;
+	padding: 40px 24px;
+
+	display: flex;
+	flex-direction: column;
+
+	gap: 20px;
+
+	width: 400px;
+
+	img {
+		margin: 0 auto;
+	}
+
+	p {
+		text-align: center;
+		font-weight: bold;
+		color: #373745;
+	}
+
+	div {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+
+		a {
+			button {
+				outline: 0;
+				border: 0;
+				padding: 12px 20px;
+				border-radius: 12px;
+				width: 100%;
+				font-weight: bold;
+				cursor: pointer;
+				transition: 0.3s ease all;
+
+				color: white;
+				background-color: #60c2aa;
+
+				&:hover {
+					background-color: #4e9e8a;
+				}
+			}
+		}
+	}
+}

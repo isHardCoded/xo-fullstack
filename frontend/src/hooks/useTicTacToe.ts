@@ -16,6 +16,7 @@ function defineWinner(cells: (string | null)[]) {
 
 	for (const [a, b, c] of lines) {
 		if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
+			console.log(a, b, c)
 			return cells[a]
 		}
 	}
