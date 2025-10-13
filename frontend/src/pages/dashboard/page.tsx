@@ -2,12 +2,19 @@ import GameBoard from '../../components/elements/GameBoard/GameBoard'
 import GameResultModal from '../../components/elements/GameResultModal/Index'
 import { useAuth } from '../../context/AuthContext'
 import { useTicTacToe } from '../../hooks/useTicTacToe'
+import { useUser } from '../../hooks/useUser'
+import { useEffect } from 'react'
 import Layout from '../../layouts/Layout'
 
 import styles from './index.module.scss'
 
 export default function DashboardPage() {
 	const { user, token } = useAuth()
+	const { ratings, getUserRatings } = useUser()
+
+	useEffect(() => {
+		getUserRatings(token)
+	}, [token, getUserRatings])
 
 	const opponent = { id: 5, username: 'Opponent' }
 	const mySign = 'X'
@@ -24,7 +31,6 @@ export default function DashboardPage() {
 			<Layout>
 				<div className={styles.page}>
 					<GameBoard cells={cells} handleClick={handleClick} />
-					{/* {winner && <p>Победитель: {winner === 'draw' ? 'Ничья' : winner}</p>} */}
 					<div className={styles.turnBlock}>
 						<p>Ходит</p>
 						<img
@@ -38,9 +44,27 @@ export default function DashboardPage() {
 
 				{winner && (
 					<div className={styles.modalWrapper}>
-						<GameResultModal />
+						<GameResultModal winner={winner} opponent={opponent} />
 					</div>
 				)}
+
+				<div className={styles.usersInfo}>
+					<h2>Игроки</h2>
+					<div className={styles.infoWrapper}>
+						<img width={24} src='./cross.svg' alt='Крестик' />
+						<div>
+							<p>{user?.username}</p>
+							<p>28% побед</p>
+						</div>
+					</div>
+					<div className={styles.infoWrapper}>
+						<img width={24} src='./zero.svg' alt='Крестик' />
+						<div>
+							<p>{opponent.username}</p>
+							<p>32% побед</p>
+						</div>
+					</div>
+				</div>
 			</Layout>
 		</>
 	)

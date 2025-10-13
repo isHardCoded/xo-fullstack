@@ -10,7 +10,7 @@ interface ProtectedRouteProps {
 export default function ProtectedRoute({ element }: ProtectedRouteProps) {
 	const { user } = useAuth()
 
-	if (user) {
+	if (!user) {
 		return <Navigate to={AUTH_PAGES.LOGIN} />
 	}
 
